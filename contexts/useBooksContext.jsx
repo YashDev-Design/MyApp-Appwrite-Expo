@@ -1,10 +1,6 @@
+// contexts/useBooksContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
-import {
-  databases,
-  DATABASE_ID,
-  COLLECTION_ID,
-  ID,
-} from "../lib/appwrite";
+import { databases, DATABASE_ID, COLLECTION_ID, ID } from "../lib/appwrite";
 
 const BooksContext = createContext(null);
 
@@ -16,12 +12,7 @@ export const BooksProvider = ({ children }) => {
   const fetchBooks = async () => {
     try {
       setLoadingBooks(true);
-      setBooksError(null);
-
-      const res = await databases.listDocuments(
-        DATABASE_ID,
-        COLLECTION_ID
-      );
+      const res = await databases.listDocuments(DATABASE_ID, COLLECTION_ID);
       setBooks(res.documents);
     } catch (err) {
       setBooksError(err.message);
@@ -63,9 +54,9 @@ export const BooksProvider = ({ children }) => {
         books,
         loadingBooks,
         booksError,
-        fetchBooks,
         createBook,
         deleteBook,
+        fetchBooks,
       }}
     >
       {children}

@@ -1,3 +1,4 @@
+// contexts/UserContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 import { account } from "../lib/appwrite";
 
